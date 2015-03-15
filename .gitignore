@@ -1,0 +1,3 @@
+# Exclude .extra and .path
+/.path
+/.extra
