@@ -48,3 +48,8 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 if [ -f "~/.postgresql" ]; then
     source ~/.postgresql;
 fi
+
+# Include Phabricator's Arcanist CLI stuff
+if [ -f "~/.arcanist" ]; then
+    source ~/.arcanist;
+fi

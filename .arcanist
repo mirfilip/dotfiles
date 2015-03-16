@@ -1,0 +1,6 @@
+# Add arcanist path
+ARCANIST_PATH=/Users/miroslawfilip/arcanist/arcanist
+export PATH=$ARCANIST_PATH/bin:$PATH
+
+# Add arcanish bash completion
+source $ARCANIST_PATH/resources/shell/bash-completion
