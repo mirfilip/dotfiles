@@ -42,6 +42,9 @@ alias sudo='sudo '
 # Get week number
 alias week='date +%V'
 
+# Get UNIX timestamp
+alias timestamp='date +%s'
+
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
@@ -125,3 +128,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+alias fuck='$(thefuck $(fc -ln -1))'
+# You can use whatever you want as an alias, like for mondays:
+alias FUCK='fuck'
