@@ -29,6 +29,8 @@
 	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 	# List contributors with number of commits
 	contrib = shortlog --summary --numbered
+	ahead = !"git lg origin/develop..HEAD"
+	amend = commit --amend -C HEAD
 [user]
 	name = Mirosław Filip
 	email = mirfilip@gmail.com
