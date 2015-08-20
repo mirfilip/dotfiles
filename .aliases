@@ -135,4 +135,5 @@ alias FUCK='fuck'
 
 # fpp + git aliases
 alias fadd="git st | fpp -c 'git add'; git st"
+alias freset="git st | fpp -c 'git reset HEAD'; git st"
 alias fdiff="git st | fpp -c 'git diff'; git st"
