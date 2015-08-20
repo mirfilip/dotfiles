@@ -81,3 +81,5 @@
 	insteadOf = "gist:"
 [tag]
 	sort = version:refname
+[help]
+	autocorrect = 1
