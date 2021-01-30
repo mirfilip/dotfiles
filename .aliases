@@ -137,3 +137,11 @@ alias FUCK='fuck'
 alias fadd="git st | fpp -c 'git add'; git st"
 alias freset="git st | fpp -c 'git reset HEAD'; git st"
 alias fdiff="git st | fpp -c 'git diff'; git st"
+
+alias bd="WD=`pwd`; phpbrew ext enable xdebug && php -dxdebug.remote_autostart=1 -dxdebug.remote_enable=1 $WD/vendor/bin/behat -f progress -c behat.yml --stop-on-failure"
+alias b="WD=`pwd`; phpbrew ext disable xdebug && php -dxdebug.remote_autostart=0 -dxdebug.remote_enable=0 $WD/vendor/bin/behat -f progress -c behat.yml --stop-on-failure"
+
+alias gd="git d"
+alias gdc="git d --cached"
+alias gst="git st --short"
+alias gc="git commit"
