@@ -18,6 +18,7 @@ if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
 else # OS X `ls`
 	colorflag="-G"
+	#export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 
 # List all files colorized in long format
@@ -49,12 +50,19 @@ alias timestamp='date +%s'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
+# Google Chrome
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Show active network interfaces
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
@@ -80,7 +88,7 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # Empty the Trash on all mounted volumes and the main HDD
 # Also, clear Apple’s System Logs to improve shell startup speed
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
@@ -94,8 +102,8 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
 # Merge PDF files
-# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
-alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+# Usage: `mergepdf input{1,2,3}.pdf`
+alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
 
 # Disable Spotlight
 alias spotoff="sudo mdutil -a -i off"
@@ -127,20 +135,21 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l"
+alias reload="exec ${SHELL} -l"
 
-alias fuck='$(thefuck $(fc -ln -1))'
-# You can use whatever you want as an alias, like for mondays:
-alias FUCK='fuck'
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
 
 # fpp + git aliases
 alias fadd="git st | fpp -c 'git add'; git st"
 alias freset="git st | fpp -c 'git reset HEAD'; git st"
 alias fdiff="git st | fpp -c 'git diff'; git st"
 
+# PHP + xdebug related stuff
 alias bd="WD=`pwd`; phpbrew ext enable xdebug && php -dxdebug.remote_autostart=1 -dxdebug.remote_enable=1 $WD/vendor/bin/behat -f progress -c behat.yml --stop-on-failure"
 alias b="WD=`pwd`; phpbrew ext disable xdebug && php -dxdebug.remote_autostart=0 -dxdebug.remote_enable=0 $WD/vendor/bin/behat -f progress -c behat.yml --stop-on-failure"
 
+# git aliases
 alias gd="git d"
 alias gdc="git d --cached"
 alias gst="git st --short"
