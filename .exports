@@ -40,3 +40,5 @@ export GREP_OPTIONS='--color=auto';
 # Terminal coloring
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
