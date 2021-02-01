@@ -1,11 +1,11 @@
 # Powerline
-powerline_path=$(python -c 'import pkgutil; print pkgutil.get_loader("powerline").filename' 2>/dev/null)
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+
+powerline_path="$(brew --prefix)/lib/python3.9/site-packages/powerline"
 if [[ "$powerline_path" != "" ]]; then
 	source ${powerline_path}/bindings/bash/powerline.sh
 else
     # Setup your normal PS1 here.
-fi
-
-if [ -d "$HOME/Library/Python/2.7/bin" ]; then
-    PATH="$HOME/Library/Python/2.7/bin:$PATH"
 fi
