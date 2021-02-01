@@ -39,6 +39,12 @@ if  which brew > /dev/null; then
     if  which hub > /dev/null; then
         source "$(brew --prefix)/etc/bash_completion.d/hub.bash_completion.sh";
     fi;
+
+    # z beats cd most of the time. `brew install z`
+		if which brew > /dev/null; then
+				zpath="$(brew --prefix)/etc/profile.d/z.sh"
+				[ -s $zpath ] && source $zpath
+		fi;
 fi;
 
 # Enable tab completion for `g` by marking it as an alias for `git`
