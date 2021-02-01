@@ -31,7 +31,7 @@ elif [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion;
 fi;
 
-if  which brew > /dev/null; then
+if which brew > /dev/null; then
     # homebrew completion
     source "$(brew --prefix)/etc/bash_completion.d/brew"
 
@@ -56,6 +56,9 @@ fi;
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
+
+# Add private keys to ssh-agent
+grep -rIl '^-----BEGIN RSA PRIVATE KEY-----$' ~/.ssh | gxargs -n1 -i -r ssh-add {}
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
