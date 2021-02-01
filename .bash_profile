@@ -86,6 +86,9 @@ if [ -f "~/.postgresql" ]; then
     source ~/.postgresql;
 fi
 
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# This sets up a $NVM_DIR/current symlink
+# See https://medium.com/@danielzen/using-nvm-with-webstorm-or-other-ide-d7d374a84eb1
+export NVM_SYMLINK_CURRENT=true;
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
