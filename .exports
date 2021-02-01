@@ -50,3 +50,7 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# Homebrew started removing old versions of packages when you do install or upgrade
+# This flag turns it off - https://stackoverflow.com/questions/56206172/configure-homebrew-to-not-delete-old-versions
+export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
