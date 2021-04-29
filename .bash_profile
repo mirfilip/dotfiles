@@ -58,7 +58,7 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 # Add private keys to ssh-agent
-grep -rIl '^-----BEGIN RSA PRIVATE KEY-----$' ~/.ssh | gxargs -n1 -i -r ssh-add {}
+grep -rIl '^-----BEGIN RSA PRIVATE KEY-----$' ~/.ssh | gxargs -i -r ssh-add {}
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
